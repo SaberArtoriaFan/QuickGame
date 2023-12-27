@@ -1,0 +1,10 @@
+
+
+public partial class #UICLASSNAME#
+{
+#CLASSCONTENT#
+    public override void OnScriptsGenerate()
+    {
+#METHONDCONTENT#
+    }
+}

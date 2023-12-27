@@ -1,0 +1,42 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
+#region
+//saber战棋
+#endregion
+namespace Saber 
+{
+    public class ImportWindow
+    {
+        [MenuItem("Tools/Saber/ImportAll",false,-1)]
+        public static void ImportAll()
+        {
+            string path = Path.Combine("Packages", "com.saber.qgframe");
+            if (!Directory.Exists(path))
+            {
+                path = Path.Combine("Packages", "QuickGame");
+                if (!Directory.Exists(path))
+                    Debug.LogError($"不存在路径{path},请使用packageManager导入本包或本地导入");
+            }
+            
+            var dires = Directory.GetDirectories(path);
+            foreach ( var dir in dires )
+            {
+                var n = Path.GetFileName(dir);
+                if (n == "Move~")
+                {
+                    var dirPath = Path.GetFullPath(dir);
+                    string p = Path.GetFullPath(Application.dataPath);
+                    Debug.Log($"开始导入,源文件夹:{dir},\n目标文件夹:{p}");
+                    IOUtil.CopyFilesAndDirs(dir, p);
+                    Debug.Log("结束导入");
+                    AssetDatabase.Refresh();
+                    break;
+                }
+            }
+        }
+    }
+
+}
