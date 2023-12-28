@@ -14,14 +14,22 @@ namespace Saber.UI
     public class AboutItem
     {
         public string ItemName;
-        public UIBehaviorType BehaviorType;
         public string ClassFullName;
+        public string BehaviorName;
+        public UIBehaviorType BehaviorType;
 
         public AboutItem(string itemName, UIBehaviorType behaviorType, string classFullName)
         {
             ItemName = itemName;
             BehaviorType = behaviorType;
             ClassFullName = classFullName;
+        }
+
+        public AboutItem(string itemName,  string behaviorName, string classFullName)
+        {
+            ItemName = itemName;
+            ClassFullName = classFullName;
+            BehaviorName = behaviorName;
         }
     }
     public class UIAbout : ScriptableObject

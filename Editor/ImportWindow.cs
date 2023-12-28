@@ -61,7 +61,6 @@ namespace Saber
             {
                 ImportAll();
             }
-
         }
 
         public static void CopyFilesAndDirs(string srcDir, string destDir)

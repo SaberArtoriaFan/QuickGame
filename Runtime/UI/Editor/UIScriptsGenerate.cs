@@ -30,7 +30,7 @@ namespace Saber.UI
         {
             var about = UIUtil.LoadAbout();
             string path = about?.UIScriptTemplate;
-            if(string.IsNullOrEmpty(savePath))
+            if(string.IsNullOrEmpty(savePath)||Directory.Exists(savePath)==false)
                 savePath = about.UIScriptSavePrefix;
             if(string.IsNullOrEmpty(path))
             {
@@ -61,16 +61,20 @@ namespace Saber.UI
         {
             StringBuilder fieldSB= new StringBuilder();
             StringBuilder methodSB= new StringBuilder();
-            Dictionary<UIBehaviorType,string> classNameDict=new Dictionary<UIBehaviorType, string>();
+            Dictionary<string,string> classNameDict=new Dictionary<string, string>();
             foreach (var v in about.aboutItems)
             {
-                if (v.BehaviorType == UIBehaviorType.Defeault) continue;
-                classNameDict.TryAdd(v.BehaviorType, v.ClassFullName);
+                if(string.IsNullOrEmpty(v.BehaviorName))
+                    classNameDict.TryAdd(v.BehaviorType.ToString(), v.ClassFullName);
+                else
+                    classNameDict.TryAdd(v.BehaviorName, v.ClassFullName);
+
 
             }
             for (int i=0; i < cache.items.Length; i++)
             {
-                if (classNameDict.TryGetValue((UIBehaviorType)cache.items[i].UIType,out var fullName))
+
+                if (classNameDict.TryGetValue(cache.items[i].UIAbb,out var fullName))
                 {
                     fieldSB.AppendLine($"\t[UnityEngine.HideInInspector]public {fullName} {cache.items[i].UIName};");
                     methodSB.AppendLine($"\t{cache.items[i].UIName} = cache.items[{i}].UIModel.GetComponent<{fullName}>();");

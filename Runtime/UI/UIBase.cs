@@ -204,7 +204,7 @@ namespace Saber.UI
                     //    path = s,
                     //    type = GetUIType(prefix)
                     //});
-                    cacheItems.Add(new UICacheItem() { UIName=n,UIPath=s,UIModel=tr.gameObject,UIType=UIUtil.GetUIType(prefix,about)});
+                    cacheItems.Add(new UICacheItem() { UIName=n,UIPath=s,UIModel=tr.gameObject,UIAbb=UIUtil.GetUIType(prefix,about)});
                 }
             };
             foreach(Transform tr in transform)

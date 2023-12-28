@@ -25,7 +25,7 @@ namespace Saber.UI
     {
         public string UIName;
         public string UIPath;
-        public byte UIType;
+        public string UIAbb;
         public GameObject UIModel;
     }
 }

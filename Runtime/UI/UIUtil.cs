@@ -85,12 +85,18 @@ public static class UIUtil
         return null;
     }
 
-    internal static byte GetUIType(string uIName,UIAbout about)
+    internal static string GetUIType(string uIName, UIAbout about)
     {
-        foreach(var v in about.aboutItems)
+        foreach (var v in about.aboutItems)
         {
-            if (v.ItemName == uIName) return (byte)v.BehaviorType;
+            if (v.ItemName == uIName)
+            {
+                if (string.IsNullOrEmpty(v.BehaviorName))
+                    return v.BehaviorType.ToString();
+                else
+                    return v.BehaviorName;
+            }
         }
-        return 0;
+        return null;
     }
 }

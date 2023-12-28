@@ -14,6 +14,11 @@ namespace Saber.UI
     {
         UIAbout uIAbout;
         List<(string,string)>list=new List<(string, string)>();
+
+        string newAbout_Abb;
+        string newAbout_FullClassName;
+        UIBehaviorType behaviorType;
+
         public UIAboutWindow()
         {
             position = new Rect(this.position.xMin, position.yMin, 800, 500);
@@ -28,7 +33,7 @@ namespace Saber.UI
             //System.Reflection.FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
             foreach (var v in uIAbout.aboutItems)
             {
-                 list.Add((v.BehaviorType.ToString(), v.ItemName));
+                 list.Add((string.IsNullOrEmpty(v.BehaviorName)?v.BehaviorType.ToString():v.BehaviorName, v.ItemName));
             }
         }
 #if UNITY_EDITOR
@@ -41,6 +46,20 @@ namespace Saber.UI
             uw.Init();
         }
 #endif
+        void DrawAddAboutItem()
+        {
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(150);
+            GUILayout.Label( "缩写:", GUILayout.Width(60));
+            newAbout_Abb = GUILayout.TextField(newAbout_Abb, GUILayout.Width(150));
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Space(150);
+            GUILayout.Label("类名:", GUILayout.Width(60));
+            newAbout_Abb = GUILayout.TextField(newAbout_Abb, GUILayout.Width(150));
+            GUILayout.EndHorizontal();
+        }
         private void OnGUI()
         {
             GUILayout.BeginVertical();
@@ -64,6 +83,9 @@ namespace Saber.UI
                 GUILayout.Label(f.Item2);
                 GUILayout.EndHorizontal();
             }
+            GUILayout.Space(30);
+
+            
 
             GUILayout.EndVertical();
         }
