@@ -1,4 +1,4 @@
-using Cysharp.Threading.Tasks;
+//using Cysharp.Threading.Tasks;
 using Saber.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,22 +21,22 @@ public static class UIUtil
     public static readonly string AboutPath = Path.Combine("UI","About.asset");
 
     //public static UIAbout About=
-    public static async UniTask LocalScaleSize(this TMP_Text text, Vector3 target,float duration,bool isLoop)
-    {
-        if (duration <= 0) return;
-        Vector3 origin = text.transform.localScale;
-        float timer = 0;
-        while (timer<duration)
-        {
-            var deltaTime = Time.deltaTime;
-            timer += deltaTime;
-            text.transform.localScale=Vector3.Lerp(text.transform.localScale, target, deltaTime/duration);
-            await UniTask.WaitForSeconds(deltaTime);
-        }
-        text.transform.localScale=target;
-        if (isLoop)
-            text.LocalScaleSize(origin, duration, isLoop);
-    }
+    //public static async UniTask LocalScaleSize(this TMP_Text text, Vector3 target,float duration,bool isLoop)
+    //{
+    //    if (duration <= 0) return;
+    //    Vector3 origin = text.transform.localScale;
+    //    float timer = 0;
+    //    while (timer<duration)
+    //    {
+    //        var deltaTime = Time.deltaTime;
+    //        timer += deltaTime;
+    //        text.transform.localScale=Vector3.Lerp(text.transform.localScale, target, deltaTime/duration);
+    //        await UniTask.WaitForSeconds(deltaTime);
+    //    }
+    //    text.transform.localScale=target;
+    //    if (isLoop)
+    //        text.LocalScaleSize(origin, duration, isLoop);
+    //}
 
 
     public static UIAbout LoadAbout()

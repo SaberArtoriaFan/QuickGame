@@ -4,30 +4,20 @@
   
     "displayName": "QuickGame",
   
-    "version": "0.0.1",
+    "version": "1.0.0",
   
     "unity": "2021.3",
   
-    "description": "abababaab",
+    "description": "Provides native Huawei AREngine integration for use with Unity's multi-platform XR API.\nSupports the following features:\n-Efficient Background Rendering\n-Horizontal Planes\n-Depth Data\n-Anchors\n-Hit Testing\n-Occlusion",
   
     "keywords": [
   
       "saber"
   
     ],
-    "author": {
-      "name": "EdwardLee",
-      "email": "17779647726@163.com",
-      "url": "https://github.com/SaberArtoriaFan"
-    },
-   "repository": {
-      "url": "https://github.com/SaberArtoriaFan/myluban.git",
-      "type": "git",
-      "revision": "0.0.1"
-    },
+  
     "dependencies": {
   
-      "com.cysharp.unitask": "2.5.0",
   
       "com.unity.textmeshpro": "3.0.0"
   
