@@ -1,12 +1,7 @@
 //using Cysharp.Threading.Tasks;
 using Saber.UI;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEditor.VersionControl;
 using System.IO;
-using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif

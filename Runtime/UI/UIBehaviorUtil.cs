@@ -1,11 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
-using UnityEngine.EventSystems;
-using static UnityEngine.EventSystems.EventTrigger;
-using System;
-using TMPro;
-using log4net.Util;
 
 namespace Saber.UI
 {
