@@ -1,0 +1,15 @@
+
+
+public partial class #UICLASSNAME#
+{
+#CLASSCONTENT#
+    public override void OnScriptsGenerate()
+    {
+#METHONDCONTENT#
+    }
+    public System.Collections.Generic.Dictionary<string,UnityEngine.GameObject> OnEditorShow()
+   {
+#ONEDITOTSHOW#
+   }
+
+}

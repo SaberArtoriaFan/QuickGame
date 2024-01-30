@@ -1,0 +1,20 @@
+{
+    "name": "Saber.QuickGame.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5009d773749dda2499de2f8ea2709680"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "SABER_INIT"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
