@@ -41,6 +41,8 @@ namespace Saber.Base
         public T GetObjectInPool()
         {
             T res;
+            while (pool.Count>0&& pool.Peek() == null)
+                _ = pool.Pop();
             if (pool.Count > 0)
             {
                 res = pool.Pop();
@@ -62,6 +64,8 @@ namespace Saber.Base
 
             lock (rwLock)
             {
+                while (pool.Count > 0 && pool.Peek() == null)
+                    _ = pool.Pop();
                 if (pool.Count > 0)
                 {
                     res = pool.Pop();

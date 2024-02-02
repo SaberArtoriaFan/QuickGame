@@ -48,6 +48,7 @@ using UnityEngine;
         //发送事件
         public static void TriggerEvent(string eventName, object arg = null)
         {
+            if (Application.isPlaying == false) return;
             Action<object> thisEvent;
             if (eventDictionary.TryGetValue(eventName, out thisEvent))
             {

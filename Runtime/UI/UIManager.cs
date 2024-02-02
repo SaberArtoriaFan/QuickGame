@@ -228,7 +228,7 @@ namespace Saber.UI
             {
                 ui.gameObject.SetActive(false);
                 UINode targetNode = rootNode;
-                while (targetNode.deepNode.Order < ui.Order && targetNode.deepNode != null)
+                while (targetNode.deepNode != null && targetNode.deepNode.Order < ui.Order )
                     targetNode = targetNode.deepNode;
                 if (targetNode.deepNode == null)
                 {

@@ -22,14 +22,10 @@ public class UIInspectorHelperDrawer : PropertyDrawer
         //Debug.Log($"序列化对象:{property.serializedObject.targetObject},类型:{(property.serializedObject.targetObject).GetType()}方法:{(property.serializedObject.targetObject).GetType().GetMethod("OnEditorShow")}");
         dict = (property.serializedObject.targetObject).GetType().GetMethod("OnEditorShow").Invoke(property.serializedObject.targetObject, null) as Dictionary<string, GameObject>;
     }
-    public override VisualElement CreatePropertyGUI(SerializedProperty property)
-    {
-        InitDict(property);
-        return base.CreatePropertyGUI(property);
-    }
     public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
     {
         //var count = property.FindPropertyRelative("items").arraySize + 1;
+        if (isExpand == false) return originHeigh;
         InitDict(property);
         var count = dict.Count + 1;
         // Debug.Log("cOUNT" + count);
@@ -37,7 +33,6 @@ public class UIInspectorHelperDrawer : PropertyDrawer
     }
     public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
     {
-        InitDict(property);
         Rect toggle = position;
         if (isExpand)
             toggle = new Rect(position.x, position.y, position.width, originHeigh);
@@ -53,6 +48,7 @@ public class UIInspectorHelperDrawer : PropertyDrawer
         isExpand = EditorGUI.Toggle(toggle, "展示元素缓存", isExpand);
         if (isExpand)
         {
+            InitDict(property);
             //property.serializedObject
             EditorGUI.BeginDisabledGroup(true);
             foreach (var item in dict)

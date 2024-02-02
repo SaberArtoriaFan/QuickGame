@@ -55,6 +55,14 @@ namespace Saber.Base
         {
             return poolDict.ContainsKey(poolName);
         }
+        public void RemovePool(string name)
+        {
+            if(poolDict.TryGetValue(name,out var pool))
+            {
+                pool.Destory();
+                poolDict.Remove(name);
+            }
+        }
         protected override void Init()
         {
             base.Init();
