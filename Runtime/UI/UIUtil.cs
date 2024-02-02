@@ -2,6 +2,9 @@
 using Saber.UI;
 using UnityEngine;
 using System.IO;
+using System;
+using System.Reflection;
+using System.Collections.Generic;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -33,7 +36,61 @@ public static class UIUtil
     //        text.LocalScaleSize(origin, duration, isLoop);
     //}
 
+#if UNITY_EDITOR
+    public static void Save(this UIAbout uIAbout)
+    {
+        var path = AssetDatabase.GetAssetPath(uIAbout);
+        EditorUtility.SetDirty(uIAbout);
+        AssetDatabase.SaveAssets();
+        Debug.Log($"保存成功!路径:{path}");
+    }
+    public static AboutItem Clone(this AboutItem aboutItem)
+    {
+        return new AboutItem(aboutItem.ItemName, aboutItem.BehaviorName, aboutItem.ClassFullName);
+    }
+    public static bool CheckRight(this UIAbout about)
+    {
+        var assemblys = AppDomain.CurrentDomain.GetAssemblies();
+        bool isRight = true;
+        foreach (var v in about.aboutItems)
+        {
+            isRight&=v.CheckRight(assemblys);
+        }
+        return isRight;
+        //Type knownType = typeof(UnityEngine.UI.Button);
+        //Assembly a = Assembly.GetAssembly(knownType);
+        //Type t = a.GetType("UnityEngine.UI.Image");
+    }
+    public static bool CheckRight(this AboutItem item, Assembly[] assemblies)
+    {
+        try
+        {
+            Type type = null;
+            foreach (Assembly a in assemblies)
+            {
+                type = a.GetType(item.ClassFullName);
+                if (type != null)
+                    break;
+            }
+            //string assemblyName = item.ClassFullName.Substring(0, item.ClassFullName.LastIndexOf('.'));
+            //Assembly assembly = Assembly.Load(assemblyName);
+            //var type = assembly.GetType(item.ClassFullName);
+            if (type == null)
+                throw new Exception();
+            item.BehaviorName = type.Name;
+            return true;
+        }catch(Exception ex)
+        {
+            item.isError = true;
+            Debug.LogError("输入的类型全称有误!---->" + item.ClassFullName);
+            return false;
 
+        }
+        //Type knownType = typeof(UnityEngine.UI.Button);
+        //Assembly a = Assembly.GetAssembly(knownType);
+        //Type t = a.GetType("UnityEngine.UI.Image");
+    }
+#endif
     public static UIAbout LoadAbout()
     {
         UIAbout res = null;
@@ -103,9 +160,9 @@ public static class UIUtil
         {
             if (v.ItemName == uIName)
             {
-                if (string.IsNullOrEmpty(v.BehaviorName))
-                    return v.BehaviorType.ToString();
-                else
+                //if (string.IsNullOrEmpty(v.BehaviorName))
+                //    return v.BehaviorType.ToString();
+                //else
                     return v.BehaviorName;
             }
         }

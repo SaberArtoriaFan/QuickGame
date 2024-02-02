@@ -18,6 +18,7 @@ namespace Saber.UI
         string newAbout_Abb;
         string newAbout_FullClassName;
         UIBehaviorType behaviorType;
+        AboutItem aboutItem = new AboutItem();
 
         public UIAboutWindow()
         {
@@ -33,31 +34,28 @@ namespace Saber.UI
             //System.Reflection.FieldInfo[] fields = type.GetFields(BindingFlags.Public | BindingFlags.Instance);
             foreach (var v in uIAbout.aboutItems)
             {
-                 list.Add((string.IsNullOrEmpty(v.BehaviorName)?v.BehaviorType.ToString():v.BehaviorName, v.ItemName));
+                 list.Add((v.BehaviorName, v.ItemName));
             }
         }
 #if UNITY_EDITOR
-        [MenuItem("GameObject/UI/About")]
-        public static void SelectAbout()
-        {
-            var uw= EditorWindow.GetWindow<UIAboutWindow>();
-           // var path = Path.Combine("Assets", "Resources", UIUtil.AboutPath);
-            uw.uIAbout = UIUtil.LoadAbout();
-            uw.Init();
-        }
+        //[MenuItem("GameObject/UI/About")]
+        //public static void SelectAbout()
+        //{
+        //    var uw= EditorWindow.GetWindow<UIAboutWindow>();
+        //   // var path = Path.Combine("Assets", "Resources", UIUtil.AboutPath);
+        //    uw.uIAbout = UIUtil.LoadAbout();
+        //    uw.Init();
+        //}
+        //[MenuItem("Saber/UI/About",false,1)]
+        //public static void SelectAboutWindow()
+        //{
+        //    SelectAbout();
+        //}
 #endif
         void DrawAddAboutItem()
         {
             GUILayout.BeginHorizontal();
-            GUILayout.Space(150);
-            GUILayout.Label( "缩写:", GUILayout.Width(60));
-            newAbout_Abb = GUILayout.TextField(newAbout_Abb, GUILayout.Width(150));
-            GUILayout.EndHorizontal();
-
-            GUILayout.BeginHorizontal();
-            GUILayout.Space(150);
-            GUILayout.Label("类名:", GUILayout.Width(60));
-            newAbout_Abb = GUILayout.TextField(newAbout_Abb, GUILayout.Width(150));
+            //aboutItem = (AboutItem)EditorGUILayout.ObjectField(aboutItem, typeof(AboutItem), false);
             GUILayout.EndHorizontal();
         }
         private void OnGUI()
@@ -85,7 +83,7 @@ namespace Saber.UI
             }
             GUILayout.Space(30);
 
-            
+            DrawAddAboutItem();
 
             GUILayout.EndVertical();
         }

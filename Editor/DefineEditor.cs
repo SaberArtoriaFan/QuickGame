@@ -10,7 +10,7 @@ public class DefineEditor
 {
     public static string SaberInitDefine = "SABER_INIT";
     /// <summary>
-    /// [MenuItem("Tools/Saber/Define/[OFF]", false, 1000)]
+    /// [MenuItem("Saber/Define/[OFF]", false, 1000)]
     /// </summary>
     public static void SetAllTargetDefine()
     {

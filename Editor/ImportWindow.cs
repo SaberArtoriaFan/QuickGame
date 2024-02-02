@@ -13,7 +13,7 @@ namespace Saber
     {
         public static string InitKey = "Saber_QuickGame_Init";
 
-        [MenuItem("Tools/Saber/ImportAll",false,-1)]
+        [MenuItem("Saber/ImportAll",false,-1)]
         public static void ImportAll()
         {
             string path = Path.Combine("Packages", "com.saber.qgframe");

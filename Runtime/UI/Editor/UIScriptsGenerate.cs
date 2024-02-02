@@ -72,10 +72,7 @@ namespace Saber.UI
             Dictionary<string,string> classNameDict=new Dictionary<string, string>();
             foreach (var v in about.aboutItems)
             {
-                if(string.IsNullOrEmpty(v.BehaviorName))
-                    classNameDict.TryAdd(v.BehaviorType.ToString(), v.ClassFullName);
-                else
-                    classNameDict.TryAdd(v.BehaviorName, v.ClassFullName);
+               classNameDict.TryAdd(v.BehaviorName, v.ClassFullName);
 
 
             }
